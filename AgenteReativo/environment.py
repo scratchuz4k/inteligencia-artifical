@@ -1,4 +1,3 @@
-
 import threading
 import numpy as np
 import random
@@ -36,7 +35,11 @@ class Environment(threading.Thread):
         self.grid[2][4].has_wall = True
         self.grid[4][2].has_wall = True
 
-        self.agent = ReactiveAgent(self.grid[6][3])
+        self.agent_list = []
+        agent1 = ReactiveAgent(self.grid[6][3])
+        self.agent_list.insert(0, agent1)
+        agent2 = ReactiveAgent(self.grid[3][6])
+        self.agent_list.insert(1, agent2)
 
         for i in range(self.rows):
             for j in range(self.columns):
@@ -52,8 +55,9 @@ class Environment(threading.Thread):
         self.environment_updated()
         while self.iteration < self.num_iterations and self.thread_running:
             # Students should uncomment next line in exercise e)
-            # self.dirt_update()
-            self.agent.act(self)
+            self.dirt_update()
+            for agent in self.agent_list:
+                agent.act(self)
             self.iteration += 1
             self.environment_updated()
         self.simulation_stopped()
