@@ -1,4 +1,3 @@
-
 from search_methods.depth_limited_search import DepthLimitedSearch
 from search_methods.search_method import SearchMethod
 from search_methods.node import Node
@@ -23,12 +22,32 @@ class IterativeDeepeningSearch(DepthLimitedSearch):
         self.num_generated_states = 0  # Specific to this algorithm
         self.stopped = False
         self.limit = 0
-
-        # TODO
+        while True:
+            previous_num_generated_states = self.num_generated_states
+            solution = self.graph_search(problem)
+            self.limit += 1
+            if solution is not None or self.num_generated_states == previous_num_generated_states:
+                return solution
 
     def graph_search(self, problem: Problem) -> Solution:
-        # TODO
-        pass
+        self._frontier.clear()
+        self._frontier.append(Node(problem.initial_state))
+        self.num_generated_states += 1
+
+        while len(self._frontier) != 0 and not self.stopped:
+            node = self._frontier.pop()
+            state = node.state
+
+            if node.depth == self.limit and problem.is_goal(state):
+                return Solution(problem, node)
+            num_successors_size = 0
+            if node.depth < self.limit:
+                actions = problem.get_actions(state)
+                num_successors_size = len(actions)
+                for action in actions:
+                    successor = problem.get_successor(state, action)
+                    self.add_successor_to_frontier(successor, node)
+            self.compute_statistics(num_successors_size)
 
     def __str__(self):
         return "Iterative deepening search"
