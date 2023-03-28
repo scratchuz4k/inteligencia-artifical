@@ -1,4 +1,3 @@
-
 import numpy as np
 
 from agents.heuristic import Heuristic
@@ -14,7 +13,14 @@ class HeuristicTileDistance(Heuristic[EightPuzzleProblem, EightPuzzleState]):
         self._cols_goal_matrix = None
 
     def compute(self, state: EightPuzzleState) -> float:
-        # TODO
+        h = 0
+        for row in range(state.rows):
+            for col in range(state.columns):
+                if state.matrix[row][col] != 0:
+                    h += abs(row - self._line)
+        return h
+
+    def build_aux_array(self):
         pass
 
     @property
