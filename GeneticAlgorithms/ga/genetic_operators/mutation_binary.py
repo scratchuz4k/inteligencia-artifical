@@ -11,7 +11,7 @@ class MutationBinary(Mutation):
 
     def mutate(self, individual: BitVectorIndividual) -> None:
         for i in range(len(individual.genome)):
-            if GeneticAlgorithm.rand.Random() < self.probability:
+            if GeneticAlgorithm.rand.random() < self.probability:
                 individual.genome[i] = not individual.genome[i]
 
     def __str__(self):

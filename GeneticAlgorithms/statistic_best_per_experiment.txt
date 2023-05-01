@@ -1,0 +1,32 @@
+
+Population size: 100
+Max generations: 100
+Selection: Tournament selection(2)
+Recombination: One cut recombination (0.7)
+Mutation:Binary mutation (0.01)
+
+Weight: 15.0(Max weight: 15)
+Value: 1149.0
+Fitness: 1149.0
+Items: 
+19	5.0	381.0
+28	5.0	386.0
+29	5.0	382.0
+
+# --------------------------------------------------------------
+
+Population size: 100
+Max generations: 100
+Selection: Tournament selection(4)
+Recombination: One cut recombination (0.7)
+Mutation:Binary mutation (0.01)
+
+Weight: 15.0(Max weight: 15)
+Value: 1138.0
+Fitness: 1138.0
+Items: 
+21	6.0	383.0
+28	5.0	386.0
+30	4.0	369.0
+
+# --------------------------------------------------------------

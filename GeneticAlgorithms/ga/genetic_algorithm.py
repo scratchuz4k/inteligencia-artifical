@@ -43,6 +43,7 @@ class GeneticAlgorithm:
             self.population = self.selection_method.run(self.population)
             self.recombination_method.run(self.population)
             self.mutation_method.run(self.population)
+
             if not self.best_in_run.better_than(self.population.evaluate()):
                 self.best_in_run = copy.deepcopy(self.population.best_individual)
             self.generation += 1

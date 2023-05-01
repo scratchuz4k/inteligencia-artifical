@@ -1,4 +1,3 @@
-
 import copy
 from ga.genetic_algorithm import GeneticAlgorithm
 from ga.population import Population
@@ -18,9 +17,12 @@ class Tournament(SelectionMethod):
         return new_population
 
     def tournament(self, population: Population) -> Individual:
-        pass
+        best = population.individuals[GeneticAlgorithm.rand.randint(0, population.size - 1)]
+        for i in range(0, self.tournament_size - 1):
+            opponent = population.individuals[GeneticAlgorithm.rand.randint(0, population.size - 1)]
+            if opponent.fitness > best.fitness:
+                best = opponent
+        return copy.deepcopy(best)
 
     def __str__(self):
         return "Tournament selection(" + f'{self.tournament_size}' + ")"
-
-
